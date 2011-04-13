@@ -1,0 +1,16 @@
+name: bSwarm
+main: com.bradsproject.BradleyJewell.bSwarm.bSwarm
+version: 0.5.2
+description: Summon a swarm of monsters!
+authors:
+  - Brad811
+commands:
+  bswarm:
+    description: Starts a swarm of monsters!
+    usage: /<command> {player | swarm name} [type] [number] [delay]
+  bswarmnuke:
+    description: Removes all monsters in the player's current world.
+    usage: /<command>
+  bnuke:
+    description: Removes all monsters in the player's current world.
+    usage: /<command>
