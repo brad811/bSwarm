@@ -154,11 +154,11 @@ public class bSwarm extends JavaPlugin
 	}
 	
 	@SuppressWarnings("unchecked")
-	public CraftEntity spawn(Location location, String type) throws Exception
+	public CraftEntity spawn(Location loc, String type) throws Exception
 	{
 		try
 		{
-			CraftWorld cworld = (CraftWorld) location.getWorld();
+			CraftWorld cworld = (CraftWorld) loc.getWorld();
 			WorldServer world = (cworld).getHandle();
 			Constructor<CraftEntity> craft = (Constructor<CraftEntity>) ClassLoader
 					.getSystemClassLoader().loadClass(
@@ -195,7 +195,6 @@ public class bSwarm extends JavaPlugin
 	
 	public void swarm(Player player, String type, int num, long delay)
 	{
-		System.out.println("(" + player + "," + type + "," + num + "," + delay + ")!!");
 		bSwarmTask task = new bSwarmTask(this, player);
 		task.type = type;
 		task.num = num;

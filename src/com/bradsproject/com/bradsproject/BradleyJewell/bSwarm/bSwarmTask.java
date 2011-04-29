@@ -7,8 +7,9 @@ import java.util.Random;
 import net.minecraft.server.WorldServer;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.entity.CraftEntity;
-//import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 
 public class bSwarmTask implements Runnable
@@ -180,9 +181,15 @@ public class bSwarmTask implements Runnable
 			double x = location.getX() + randX;
 			double z = location.getZ() + randZ;
 			
-			Location loc = new Location(location.getWorld(), x, location.getY() + 1, z);
+			Location loc = new Location(location.getWorld(), x, location.getY(), z);
+			Block block = loc.getWorld().getBlockAt(loc);
+			while (!(block.getType() == Material.AIR || block.getType() == Material.WATER || block.getType() == Material.STATIONARY_WATER ))
+			{
+				loc.setY(loc.getY() + 1);
+				block = loc.getWorld().getBlockAt(loc);
+			}
 			spawned.teleportTo(loc);
-			world.a(spawned.getHandle());
+			world.addEntity(spawned.getHandle());
 		} catch (Exception e)
 		{
 			System.out.println("Spawnmob error!");
