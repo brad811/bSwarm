@@ -32,7 +32,7 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.SafeConstructor;
 
 import com.nijiko.permissions.PermissionHandler;
-import com.nijikokun.bukkit.Permissions.Permissions;
+import com.nijikokun.bukkit.Permissions.*;
 
 /**
  * bSwarm for Bukkit
