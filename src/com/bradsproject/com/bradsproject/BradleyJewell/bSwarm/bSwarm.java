@@ -51,9 +51,6 @@ public class bSwarm extends JavaPlugin
 	
 	public void onEnable()
 	{
-		// Register our events
-		// PluginManager pm = getServer().getPluginManager();
-		
 		try
 		{
 			parseConfig();
@@ -64,8 +61,6 @@ public class bSwarm extends JavaPlugin
 		
 		setupPermissions();
 		
-		// EXAMPLE: Custom code, here we just output some info so we can check
-		// all is well
 		PluginDescriptionFile pdfFile = this.getDescription();
 		System.out.println(pdfFile.getName() + " version " + pdfFile.getVersion()
 				+ " is enabled!");
@@ -73,13 +68,9 @@ public class bSwarm extends JavaPlugin
 	
 	public void onDisable()
 	{
-		// NOTE: All registered events are automatically unregistered when a
-		// plugin is disabled
-		
-		// EXAMPLE: Custom code, here we just output some info so we can check
-		// all is well
 		System.out.println("bSwarm has been disabled!");
 	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public void parseConfig() throws FileNotFoundException
@@ -146,7 +137,6 @@ public class bSwarm extends JavaPlugin
 			if(auto)
 			{
 				tasks.add(swarm);
-				System.out.println("Starting config task...");
 				swarm.id = getServer().getScheduler().scheduleSyncDelayedTask(this, swarm, 0);
 			}
 			swarms.add(swarm);
@@ -317,12 +307,12 @@ public class bSwarm extends JavaPlugin
 						tasks.add(swarm);
 						swarm.curMonsters = new HashMap<String, Integer>(swarm.monsters);
 						swarm.player = sender;
-						swarm.id = getServer().getScheduler().scheduleSyncDelayedTask(this,
-								swarm, 0);
+						swarm.id = getServer().getScheduler().scheduleSyncDelayedTask(
+								this, swarm, 0);
 						return;
 					}
 				}
-				sender.sendMessage("Invalid bSwarm command (invalid player, monster, or swarm name)");
+				sender.sendMessage("Invalid bSwarm command (invalid player, monster, or swarm name) (1)");
 				return;
 			}
 			p = players.get(0);
@@ -362,17 +352,17 @@ public class bSwarm extends JavaPlugin
 					}
 				} else
 				{
-					sender
-							.sendMessage("Invalid bSwarm command (invalid player or monster name)");
+					sender.sendMessage("Invalid bSwarm command (invalid player or monster name) (2)");
 					return;
 				}
 			} catch (NullPointerException e)
 			{
-				sender.sendMessage("Invalid bSwarm command (invalid player or monster name)");
+				sender.sendMessage("Invalid bSwarm command (invalid player or monster name) (3)");
+				e.printStackTrace();
 				return;
 			}
 		} else if(bSwarm.Permissions != null
-				&& !bSwarm.Permissions.has(victim, "bswarm.bswarm." + type.toLowerCase()))
+				&& !bSwarm.Permissions.has(sender, "bswarm.bswarm." + type.toLowerCase()))
 		{
 			sender.sendMessage("You do not have permission to use that command.");
 			return;
